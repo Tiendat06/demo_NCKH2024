@@ -11,7 +11,7 @@ from yolov6.utils.torch_utils import fuse_model
 def load_state_dict(weights, model, map_location=None):
     """Load weights from checkpoint file, only assign weights those layers' name and shape are match."""
     # ckpt = torch.load(weights, map_location=map_location)
-    ckpt = torch.load(weights, map_location=map_location, weights_only=True)
+    ckpt = torch.load(weights, map_location=map_location, weights_only=False)
 
     state_dict = ckpt['model'].float().state_dict()
     model_state_dict = model.state_dict()
@@ -25,7 +25,7 @@ def load_checkpoint(weights, map_location=None, inplace=True, fuse=True):
     """Load model from checkpoint file."""
     LOGGER.info("Loading checkpoint from {}".format(weights))
     # ckpt = torch.load(weights, map_location=map_location)  # load
-    ckpt = torch.load(weights, map_location=map_location, weights_only=True)
+    ckpt = torch.load(weights, map_location=map_location, weights_only=False)
 
     model = ckpt['ema' if ckpt.get('ema') else 'model'].float()
     if fuse:
