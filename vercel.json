@@ -1,12 +1,19 @@
 {
-    "build": {
-      "env": {
-        "PYTHON_VERSION": "3.8"
-      },
-      "commands": [
-        "apt-get update && apt-get install -y cmake",
-        "pip install -r requirements.txt"
-      ]
-    }
+    "version": 2,
+    "builds": [
+      {
+        "src": "svr_model.py",
+        "use": "@vercel/python",
+        "config": {
+          "pythonVersion": "3.8"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "svr_model.py"
+      }
+    ]
   }
   
