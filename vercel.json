@@ -3,7 +3,10 @@
     "builds": [
       {
         "src": "svr_model.py",
-        "use": "@vercel/python"
+        "use": "@vercel/python",
+        "config": {
+          "pythonVersion": "3.8"
+        }
       }
     ],
     "routes": [
